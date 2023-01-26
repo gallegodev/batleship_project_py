@@ -1,6 +1,7 @@
 import random
 hit_list = random.sample(range(0, 99), 3)
 miss_list = random.sample(range(0, 99), 3)
+ship_position_list = random.sample(range(0, 99), 2)
 # Name Input for the player
 
 player = input("Whats your name Commander?  \n")
@@ -13,6 +14,7 @@ print("    0  1  2  3  4  5  6  7  8  9")
 
 hit = hit_list
 miss = miss_list
+complete = ship_position_list
 place = 0
 
 for x in range(10):
@@ -20,9 +22,11 @@ for x in range(10):
     for y in range(10):
         position = " _ "
         if place in miss:
-            position = " X "
+            position = " x "
         elif place in hit:
-            position = " O "
+            position = " o "
+        elif place in complete:
+            position = " S "
         
         row = row + position
         place = place + 1
