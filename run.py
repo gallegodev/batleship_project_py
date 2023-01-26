@@ -16,6 +16,8 @@ def player_shot():
             shot = int(shot)
             if shot < 0 or shot > 99:
                 print("PLease Commander enter a number between 0 and 99")
+            elif shot in guesses:
+                print("Commander you already picked this number, please pick another one")
             else:
                 attempt = False
                 break 
@@ -47,11 +49,26 @@ def user_board(hit,miss,complete):
             place = place + 1
         print(x, "", row)
 
-hit = hit_list
-miss = miss_list
-complete = ship_position_list
+def check_shot(shot, hit, miss, complete, boat1):
+    if shot in boat1:
+        boat1.remove(shot)
+        if len(boat1) > 0:
+            hit.append(shot)
+        else:
+            complete.append(shot)
+    else:
+        miss.append(shot)
+    return boat1, miss, hit, complete
 
-shot = player_shot()
+
+boat1 = [45,46,47]
+hit = []
+miss = []
+complete = []
+
+guesses = miss + hit + complet
+shot = player_shot(guesses)
+boat1, hit, miss, complete = check_shot(shot, hit, miss, complete, boat1)
 user_board(hit,miss,complete)
 
 print("\n")
