@@ -11,14 +11,17 @@ player = input("Whats your name Commander?  \n")
 def player_shot():
     attempt = True
     while attempt == True:
-        shot = input(f"Commander {player} please enter your guess:\n")
-        shot = int(shot)
-        if shot < 0 or shot > 99:
-            print("PLease Commander enter a number between 0 and 99")
-        else:
-            attempt = False
-            break 
-
+        try:
+            shot = input(f"Commander {player} please enter your guess:\n")
+            shot = int(shot)
+            if shot < 0 or shot > 99:
+                print("PLease Commander enter a number between 0 and 99")
+            else:
+                attempt = False
+                break 
+        except:
+            print("Incorrect input, please Commander insert a number between 0 to 99\n")
+        
     return shot
 
 
