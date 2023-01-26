@@ -1,3 +1,6 @@
+import random
+hit_list = random.sample(range(0, 99), 3)
+miss_list = random.sample(range(0, 99), 3)
 # Name Input for the player
 
 player = input("Whats your name Commander?  \n")
@@ -8,14 +11,19 @@ print("              BATLESHIP!!!              \n")
 print(       f"Commander {player} Board         \n")
 print("    0  1  2  3  4  5  6  7  8  9")
 
-hit = [21,22,23]
+hit = hit_list
+miss = miss_list
 place = 0
+
 for x in range(10):
     row = ""
     for y in range(10):
         position = " _ "
-        if place in hit:
-            position = " x "
+        if place in miss:
+            position = " X "
+        elif place in hit:
+            position = " O "
+        
         row = row + position
         place = place + 1
     print(x, "", row)
