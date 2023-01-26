@@ -12,7 +12,8 @@ player = input("Whats your name Commander?  \n")
 
 def user_board(hit, miss, complete):
     print("              BATLESHIP!!!              \n")
-    print(f"Commander {player} Board\n")
+    print(f"Commander {player}\n")
+    print("Please destroy the ships of the evil Pirate")
     print("     0  1  2  3  4  5  6  7  8  9")
 
     place = 0
@@ -21,11 +22,11 @@ def user_board(hit, miss, complete):
         for y in range(10):
             position = " _ "
             if place in miss:
-                position = " x "
+                position = " h "
             elif place in hit:
-                position = " o "
+                position = " M "
             elif place in complete:
-                position = " O "
+                position = " H "
         
             row = row + position
             place = place + 1
@@ -36,6 +37,7 @@ def player_shot(guesses):
     attempt = "n"
     while attempt == "n":
         try:
+            user_board(hit, miss, complete)
             shot = input(f"Commander {player} please enter your guess:\n")
             shot = int(shot)
             if shot < 0 or shot > 99:
@@ -86,6 +88,7 @@ for i in range(10):
     if len(boat1) < 1 and len(boat2) < 1:
         print(f"Commander {player} you destroy the ships, YOU WON!!!!\n")
         break
+    
 
 print("\n")
 
