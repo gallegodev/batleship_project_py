@@ -2,6 +2,10 @@ from random import randrange
 
 
 def check_ok(boat):
+    """
+    This function checks if number if boat is valid
+    """
+
     for i in range(len(boat)):
         num = boat[i]
         if num < 0 or num > 99:
@@ -16,6 +20,9 @@ def check_ok(boat):
 
 
 def check_boat(b, start, direction):
+    """
+    This Function generates random number for the boat positions 
+    """
 
     boat = []
     if direction == 1:
