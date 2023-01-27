@@ -1,7 +1,47 @@
-import random
-hit_list = random.sample(range(0, 99), 3)
-miss_list = random.sample(range(0, 99), 3)
-ship_position_list = random.sample(range(0, 99), 2)
+from random import randrange
+
+
+def check_ok(boat):
+    for i in range(len(boat)):
+        num = boat[i]
+        if num < 0 or num > 99:
+            boat = [-1]
+            break
+        elif num % 9 == 0 and i < len(boat) - 1:
+            if boat[i+1] % 10 == 0:
+                boat = [-1]
+                break
+
+    return boat
+
+
+def check_boat(b, start, direction):
+
+    boat = []
+    if direction == 1:
+        for i in range(b):
+            boat.append(start - i*10)
+            boat = check_ok(boat)
+    elif direction == 2:
+        for i in range(b):
+            boat.append(start + i)
+            boat = check_ok(boat)
+    elif direction == 3:
+        for i in range(b):
+            boat.append(start + i*10)
+            boat = check_ok(boat)
+    elif direction == 4:
+        for i in range(b):
+            boat.append(start - i)
+            boat = check_ok(boat)
+
+    
+boats = [5, 4, 3, 3, 2, 2]
+for b in boats:
+    boat_start = randrange(99)
+    boat_direction = randrange(1, 4)
+    print(b, boat_start, boat_direction)
+    check_boat(b, boat_start, boat_direction)
 
 # Name Input for the player
 
@@ -84,7 +124,6 @@ for i in range(10):
     boat1, boat2, hit, miss, complete = check_shot(shot, boat1, boat2, hit, miss, complete)
     user_board(hit, miss, complete)
     
-
     if len(boat1) < 1 and len(boat2) < 1:
         print(f"Commander {player} you destroy the ships, YOU WON!!!!\n")
         break
@@ -116,9 +155,3 @@ def ai_board(hit, miss, complete):
             place = place + 1
         print(x, "", row)
 
-
-hit = hit_list
-miss = miss_list
-complete = ship_position_list
-
-ai_board(hit, miss, complete)
